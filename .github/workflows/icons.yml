@@ -1,0 +1,20 @@
+name: Generar iconos PNG
+on:
+  push:
+    paths: ['icons/make_icons.py', '.github/workflows/icons.yml']
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  icons:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Generar iconos
+        run: |
+          pip install --quiet pillow
+          python3 icons/make_icons.py
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add icons/*.png
+          git diff --cached --quiet || (git commit -m "Iconos PNG generados" && git push)

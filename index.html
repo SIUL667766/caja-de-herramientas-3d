@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Caja de Herramientas 3D · 48 sitios útiles</title>
+<meta name="description" content="Lanzador 3D inteligente con 48 sitios web útiles: estudio, imagen, PDF, video, desarrollo, privacidad y más.">
+<meta name="theme-color" content="#05060f">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="icons/icon-192.png">
+<link rel="apple-touch-icon" href="icons/icon-192.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Caja 3D">
+<link rel="stylesheet" href="style.css">
+<script type="importmap">
+{ "imports": {
+  "three": "https://cdn.jsdelivr.net/npm/three@0.170.0/build/three.module.js",
+  "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.170.0/examples/jsm/"
+} }
+</script>
+</head>
+<body>
+<div id="scene"></div>
+<div id="tooltip" hidden></div>
+
+<header id="top">
+  <div class="brand">
+    <span class="logo">🧰</span>
+    <div><h1>Caja de Herramientas 3D</h1><p class="sub">48 sitios útiles · toca una estrella para abrirla</p></div>
+  </div>
+  <div class="searchwrap">
+    <span class="mag">🔎</span>
+    <input id="q" type="search" autocomplete="off" spellcheck="false" placeholder="¿Qué quieres hacer?  (ej: quitar fondo, unir pdf…)" aria-label="¿Qué quieres hacer?">
+    <kbd class="hint">/</kbd>
+    <div id="results" hidden></div>
+  </div>
+  <div class="actions">
+    <button id="viewToggle" class="btn" title="Cambiar vista 3D / lista">☰ Lista</button>
+  </div>
+</header>
+
+<nav id="chips" aria-label="Categorías"></nav>
+
+<aside id="panel" hidden>
+  <button class="close" id="panelClose" aria-label="Cerrar">✕</button>
+  <div class="pemoji" id="pEmoji"></div>
+  <div class="pcat" id="pCat"></div>
+  <h2 id="pName"></h2>
+  <p id="pDesc"></p>
+  <p class="purl" id="pUrl"></p>
+  <div class="prow">
+    <a id="pOpen" class="btn primary" target="_blank" rel="noopener noreferrer">Abrir sitio ↗</a>
+    <button id="pFav" class="btn">☆ Favorito</button>
+  </div>
+  <p class="ptip">Consejo: toca otra vez la estrella para abrirla directo.</p>
+</aside>
+
+<section id="list" hidden></section>
+
+<footer id="hud">
+  <span id="status">Arrastra para girar · rueda/pellizco para zoom · <kbd>/</kbd> para buscar</span>
+  <button id="resetCam" class="btn small">⟲ Vista general</button>
+</footer>
+
+<div id="loading"><div class="spinner"></div><p>Encendiendo la galaxia…</p></div>
+
+<script type="module" src="app.js"></script>
+<script>
+if ('serviceWorker' in navigator) addEventListener('load', () => navigator.serviceWorker.register('sw.js').catch(()=>{}));
+</script>
+</body>
+</html>
